@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block title %}New Karaoke{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <form action="/edit/{{ song.id }}" method="POST">
+        <div class="form-floating mb-3">
+            <input name="song" type="text" class="form-control" id="song" value="{{ song.song }}" required>
+            <label for="song">Song</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="artist" type="text" class="form-control" id="artist" value="{{ song.artist }}" required>
+            <label for="artist">Artist</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="karaoke-video-url" type="text" class="form-control" id="karaoke-video-url" value="{{ song.karaoke_video_url }}">
+            <label for="karaoke-video-url">Karaoke Video URL</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="lyrics-video-url" type="text" class="form-control" id="lyrics-video-url" value="{{ song.lyrics_video_url }}">
+            <label for="lyrics-video-url">Lyrics Video URL</label>
+        </div>
+        <div class="form-floating">
+            <textarea name="lyrics" class="form-control lyrics" id="lyrics">{{ song.lyrics }}</textarea>
+            <label for="lyrics">Lyrics</label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

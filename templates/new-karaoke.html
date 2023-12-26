@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block title %}New Karaoke{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <form action="/new" method="POST">
+        <div class="form-floating mb-3">
+            <input name="song" type="text" class="form-control" id="song" placeholder="name@example.com" required>
+            <label for="song">Song</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="artist" type="text" class="form-control" id="artist" placeholder="Password" required>
+            <label for="artist">Artist</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="karaoke-video-url" type="text" class="form-control" id="karaoke-video-url" placeholder="Password">
+            <label for="karaoke-video-url">Karaoke Video URL</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="lyrics-video-url" type="text" class="form-control" id="lyrics-video-url" placeholder="Password">
+            <label for="lyrics-video-url">Lyrics Video URL</label>
+        </div>
+        <div class="form-floating">
+            <textarea name="lyrics" class="form-control lyrics" placeholder="Leave a comment here" id="lyrics"></textarea>
+            <label for="lyrics">Lyrics</label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

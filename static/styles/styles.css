@@ -1,0 +1,19 @@
+a {
+    text-decoration: none;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.form-control.lyrics {
+    height: 300px;
+}
+
+.karaoke-actions {
+    width: 20%;
+}
+
+.karaoke-actions > * {
+    display: inline-block;
+}

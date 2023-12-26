@@ -1,0 +1,31 @@
+{% extends "template.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<table class="table container mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Song</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for song in songs %}
+        <tr>
+            <td><a href="/detail/{{ song.id }}">{{ song.song }}</a></td>
+            <td>{{ song.artist }}</td>
+            <td class="karaoke-actions">
+                <form action="/edit/{{ song.id }}" method="GET">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+                <form action="/delete/{{ song.id }}" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
