@@ -1,6 +1,8 @@
-# Karaoke App
+# Karaoke Library
 
 This is a Flask-based web application for managing and viewing karaoke songs.
+
+**Video Demo**:  <https://youtu.be/LOkwvP2b_T4>
 
 ## Project Structure
 
@@ -16,8 +18,7 @@ The application also uses bootstrap, which is included in the `templates/layout.
 1. Install the required packages using `pip install -r requirements.txt`.
 2. Create the database using `sqlite3 karaoke.db`.
 3. While inside the sqlite3 prompt, create the tables described in `schema.sql`.
-4. Still inside the sqlite3 prompt, run the following: `.headers on` and `.mode column` to make the output of the queries compatible with the application.
-5. Run the application using `flask run --debug`.
+4. Run the application using `flask run --debug`.
 
 ## How to Use the Application
 
