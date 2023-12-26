@@ -37,7 +37,7 @@ def index():
     """ Show all karaoke songs. """
     
     cur = g.db.cursor()
-    cur.execute('SELECT * FROM songs')
+    cur.execute('SELECT * FROM songs WHERE user_id = ?', (session['user_id'],))
     songs = [dict(song) for song in cur.fetchall()]
     return render_template('index.html', active_page='home', songs=songs)
 
@@ -89,7 +89,7 @@ def new_karaoke():
             lyrics = ""
         
         cur = g.db.cursor()
-        cur.execute('INSERT INTO songs (song, artist, karaoke_video_url, lyrics_video_url, lyrics) VALUES (?, ?, ?, ?, ?)', (song, artist, karaoke_video_url, lyrics_video_url, lyrics))
+        cur.execute('INSERT INTO songs (user_id, song, artist, karaoke_video_url, lyrics_video_url, lyrics) VALUES(?, ?, ?, ?, ?, ?)', (session['user_id'], song, artist, karaoke_video_url, lyrics_video_url, lyrics))
         g.db.commit()
         return redirect('/')
     else:
@@ -147,22 +147,18 @@ def delete_karaoke(id):
 def login():
     """Log user in"""
 
-    print("aAAAAAAA")
-    # Forget any user_id
-    session.clear()
-
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
         # Ensure username was submitted
         if not request.form.get("username"):
             flash('username is required!')
-            return redirect('/new')
+            return redirect('/login')
 
         # Ensure password was submitted
         elif not request.form.get("password"):
             flash('password is required!')
-            return redirect('/new')
+            return redirect('/login')
 
         # Query database for username
         cur = g.db.cursor()
@@ -170,7 +166,7 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            flash('invalid username and/or password')
+            flash('Invalid username and/or password')
             return redirect('/login')
 
         # Remember which user has logged in
@@ -181,6 +177,8 @@ def login():
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
+        if session.get('user_id'):
+            return redirect('/')
         return render_template("login.html")
     
     
@@ -228,8 +226,10 @@ def register():
             return redirect('/register')
 
         # Create new user
-        user_id = cur.execute("INSERT INTO users (username, hash) VALUES(?, ?)", (request.form.get("username"), generate_password_hash(request.form.get("password")))).lastrowid
-
+        cur.execute("INSERT INTO users (username, hash) VALUES(?, ?)", (request.form.get("username"), generate_password_hash(request.form.get("password"))))
+        user_id = cur.lastrowid
+        g.db.commit()
+    
         # Remember which user has logged in
         session["user_id"] = user_id
 
