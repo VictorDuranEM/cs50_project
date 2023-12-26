@@ -27,3 +27,7 @@ The karaoke songs can include the song name, artist, lyrics and links to 2 video
 In the dashboard, the user can edit the karaoke songs they have added and delete them.
 
 When clicking the name of a song in the dashboard, the user is taken to a page where they can view the lyrics and the videos for that song.
+
+## YouTube URLs
+
+The application internally converts the YouTube URLs to embed URLs, which are then used to embed the videos in the application.
