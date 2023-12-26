@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div>
+        <div class="d-flex gap-3">
+            <p class="fw-bold">Song:</p>
+            <p>{{ song.song }}</p>
+        </div>
+        <div class="d-flex gap-3">
+            <p class="fw-bold">Artist:</p>
+            <p>{{ song.artist }}</p>
+        </div>
+        <div class="video-container mb-5 d-flex justify-content-evenly">
+            <div class="text-center">
+                <p class="fw-bold">Karaoke Video</p>
+                <iframe width="400" height="225" src="{{ song.karaoke_video_url }}" title="Karaoke Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="karaoke-video"></iframe>
+            </div>
+            <div class="text-center">
+                <p class="fw-bold">Lyrics Video</p>
+                <iframe width="400" height="225" src="{{ song.lyrics_video_url }}" title="Lyrics Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="lyrics-video"></iframe>
+            </div>
+        </div>
+        <div>
+            <p class="fw-bold">Lyrics:</p>
+            <p class="lyrics">{{ song.lyrics }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

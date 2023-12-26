@@ -1,4 +1,4 @@
-{% extends "template.html" %}
+{% extends "layout.html" %}
 
 {% block title %}Home{% endblock %}
 
@@ -14,7 +14,7 @@
     <tbody>
         {% for song in songs %}
         <tr>
-            <td><a href="/detail/{{ song.id }}">{{ song.song }}</a></td>
+            <td><a href="/details/{{ song.id }}">{{ song.song }}</a></td>
             <td>{{ song.artist }}</td>
             <td class="karaoke-actions">
                 <form action="/edit/{{ song.id }}" method="GET">

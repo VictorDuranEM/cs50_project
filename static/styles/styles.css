@@ -17,3 +17,7 @@ td {
 .karaoke-actions > * {
     display: inline-block;
 }
+
+.lyrics {
+    white-space: pre-line;
+}
